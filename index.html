@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="index.css" rel="stylesheet">
     <title>Weather App</title>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -15,13 +17,88 @@
             <div class="weather-input">
                 <input type="text" name="city" id="city_input" placeholder="Enter City Name">
                 <button type="button" id="searchBtn">
-                    <i class="fa-regular fa-search"></i>Search
+                    <i class="fa fa-search"></i>Search
                 </button>
                 <button type="button" id="locationBtn">
                     <i class="bx bx-target-lock"></i>Current Location
                 </button>
             </div>
         </div>
+        <div class="weather-data">
+            <div class="weather-left">
+                <div class="card">
+                    <div class="current-weather">
+                        <div class="deatils">
+                            <p>Now</p>
+                            <h2>-----&deg;C</h2>
+                            <p>-----</p>
+                        </div>
+                        <div class="weather-icon">
+                            <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="weathericon">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-footer">
+                        <p><i class="fa-light fa-calender"></i>-----</p>
+                        <p><i class="fa-light fa-location-dot"></i>-----</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>5 Days Forecast</h2>
+                    <div class="day-forecast">
+                        <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="myicon">
+                                <span>-----&deg;C</span>
+                            </div>
+                            <p>-----</p>
+                            <p>-----</p>
+                        </div>
+                    </div>
+                    <div class="day-forecast">
+                        <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="myicon">
+                                <span>-----&deg;C</span>
+                            </div>
+                            <p>-----</p>
+                            <p>-----</p>
+                        </div>
+                    </div>
+                    <div class="day-forecast">
+                        <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="myicon">
+                                <span>-----&deg;C</span>
+                            </div>
+                            <p>-----</p>
+                            <p>-----</p>
+                        </div>
+                    </div>
+                    <div class="day-forecast">
+                        <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="myicon">
+                                <span>-----&deg;C</span>
+                            </div>
+                            <p>-----</p>
+                            <p>-----</p>
+                        </div>
+                    </div>
+                    <div class="day-forecast">
+                        <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="myicon">
+                                <span>-----&deg;C</span>
+                            </div>
+                            <p>-----</p>
+                            <p>-----</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

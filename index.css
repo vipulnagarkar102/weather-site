@@ -34,11 +34,13 @@ body {
         font-size: 16px;
         border-radius: 25px;
         color: #ffffff;
-        &:focus{
+
+        &:focus {
             outline: none;
         }
     }
-    & #searchBtn{
+
+    & #searchBtn {
         border: none;
         font-size: 16px;
         padding: 12px;
@@ -46,12 +48,72 @@ body {
         background-color: #ffffff;
         cursor: pointer;
     }
-    & #locationBtn{
+
+    & #locationBtn {
         border: none;
         font-size: 16px;
         padding: 12px;
         border-radius: 25px;
         background-color: #10cab1;
         cursor: pointer;
+    }
+}
+
+.card {
+    background-color: var(--bg-color2);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+
+    & p {
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    & h2 {
+        font-size: 32px;
+        font-weight: 500;
+    }
+}
+
+.weather-data {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+
+    & .weather-left {
+        grid-column: span 1;
+
+        & .current-weather {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & h2 {
+                margin: 7px 0;
+            }
+
+            & p {
+                color: #ffffff;
+            }
+        }
+
+        & .card-footer p {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        & .forecast-item {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            place-items: center;
+            margin-bottom: 15px;
+
+            & .icon-wrapper {
+                display: flex;
+                align-items: center;
+            }
+
+        }
     }
 }
