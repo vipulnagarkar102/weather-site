@@ -63,9 +63,22 @@ function getweatherDetails(name, lat, lon, country, state) {
                 return uniqueForecastDays.push(forecastDate);
             }
         });
-        console.log(fiveDaysForecast);
+        fiveDaysForecastCard.innerHTML = '';
+        for (i = 0; i < fiveDaysForecast.length; i++) {
+            let date = new Date(fiveDaysForecast[i].dt_txt);
+            fiveDaysForecastCard.innerHTML += `
+            <div class="forecast-item">
+                            <div class="icon-wrapper">
+                                <img src="https://openweathermap.org/img/wn/${fiveDaysForecast[i].weather[0].icon}.png" alt="myicon">
+                                <span>${(fiveDaysForecast[i].main.temp - 273.15).toFixed(2)}&deg;C</span>
+                            </div>
+                            <p>${date.getDate()} ${months[date.getMonth()]}</p>
+                            <p>${days[date.getDay()]}</p>
+                        </div>
+                        `;
+        }
     }).catch(() => {
-        alert(`failed to fectch weather deyails`);
+        alert(`failed to fectch weather details`);
     });
 }
 function getCityCoordinates() {
