@@ -5,7 +5,13 @@ currentWeatherCard = document.querySelectorAll('.weather-left .card')[0];
 fiveDaysForecastCard = document.querySelector('.day-forecast');
 aqiCard = document.querySelectorAll('.highlights .card')[0];
 sunriseCard = document.querySelectorAll('.highlights .card')[1];
+humidityVal=document.getElementById('humidityVal'),
+pressureVal=document.getElementById('pressureVal'),
+visibilityVal=document.getElementById('visibilityVal'),
+windspeedVal=document.getElementById('windspeedVal'),
+feelVal=document.getElementById('feelVal'),
 aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very poor'];
+
 
 
 function getweatherDetails(name, lat, lon, country, state) {
@@ -105,7 +111,9 @@ function getweatherDetails(name, lat, lon, country, state) {
                 </div>
                 `;
         let { sunrise, sunset } = data.says,
-            { timezone } = data,
+            { timezone,visibility } = data,
+            {humidity,pressure,feels_like}=data.main,
+            {speed}=data.wind,
             sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A'),
             sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
         sunriseCard.innerHTML = `
