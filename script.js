@@ -2,6 +2,7 @@ let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
     api_key = '250d8198dcaf602952d44571e3b4b88b';
 currentWeatherCard = document.querySelectorAll('.weather-left .card')[0];
+fiveDaysForecastCard = document.querySelector('.day-forecast');
 
 
 function getweatherDetails(name, lat, lon, country, state) {
@@ -50,6 +51,19 @@ function getweatherDetails(name, lat, lon, country, state) {
                     </div>
                 </div>
                 `;
+    }).catch(() => {
+        alert(`failed to fectch weather deyails`);
+    });
+
+    fetch(FORECAST_API_URL).then(res => res.json()).then(data => {
+        let uniqueForecastDays = [];
+        let fiveDaysForecast = data.list.filter(forecast => {
+            let forecastDate = new Date(forecast.dt_txt).getDate();
+            if (!uniqueForecastDays.includes(forecastDate)) {
+                return uniqueForecastDays.push(forecastDate);
+            }
+        });
+        console.log(fiveDaysForecast);
     }).catch(() => {
         alert(`failed to fectch weather deyails`);
     });
