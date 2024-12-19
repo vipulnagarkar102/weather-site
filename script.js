@@ -15,7 +15,7 @@ humidityVal = document.getElementById('humidityVal'),
     aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very poor'];
 
 
-
+//forecast,weather,polurtion api's
 function getweatherDetails(name, lat, lon, country, state) {
     let FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`,
         WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`,
@@ -43,7 +43,7 @@ function getweatherDetails(name, lat, lon, country, state) {
             'Nov',
             'Dec'
         ];
-
+//fetch pollution data
     fetch(AIR_POLLUTION_API_URL).then(res => res.json()).then(data => {
         let { co, no, no2, o3, so2, pm2_5, pm10, nh3 } = data.list[0].components;
         aqiCard.innerHTML = `
@@ -112,6 +112,7 @@ function getweatherDetails(name, lat, lon, country, state) {
                     </div>
                 </div>
                 `;
+                //manage sunrise and sunset data
         let { sunrise, sunset } = data.sys,
             { timezone, visibility } = data,
             { humidity, pressure, feels_like } = data.main,
@@ -143,6 +144,7 @@ function getweatherDetails(name, lat, lon, country, state) {
                             </div>
                         </div>
             `;
+            //handle weather data like humidity,pressure,visibility,wind,feels
         humidityVal.innerHTML = `${humidity}%`;
         pressureVal.innerHTML = `${pressure}`;
         visibilityVal.innerHTML = `${visibility / 1000}km`;
@@ -195,6 +197,8 @@ function getweatherDetails(name, lat, lon, country, state) {
         alert(`failed to fectch weather details......`);
     });
 }
+
+//fetch details by enter city name
 function getCityCoordinates() {
     let cityName = cityInput.value.trim();
     cityInput.value = '';
@@ -208,7 +212,7 @@ function getCityCoordinates() {
     });
 }
 
-
+//manage live location detection
 function getUserCoordinates() {
     navigator.geolocation.getCurrentPosition(position => {
         let { latitude, longitude } = position.coords;
