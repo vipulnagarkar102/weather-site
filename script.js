@@ -17,7 +17,7 @@ humidityVal = document.getElementById('humidityVal'),
 function getweatherDetails(name, lat, lon, country, state) {
     let FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`,
         WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`,
-        AIR_POLLUTION_API_URL = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`,
+        AIR_POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`,
         days = [
             'Sunday',
             'Monday',
@@ -110,7 +110,7 @@ function getweatherDetails(name, lat, lon, country, state) {
                     </div>
                 </div>
                 `;
-        let { sunrise, sunset } = data.says,
+        let { sunrise, sunset } = data.sys,
             { timezone, visibility } = data,
             { humidity, pressure, feels_like } = data.main,
             { speed } = data.wind,
@@ -142,7 +142,7 @@ function getweatherDetails(name, lat, lon, country, state) {
                         </div>
             `;
         humidityVal.innerHTML = `${humidity}%`;
-        pressureVal.innerHTML = `${pressurehpa}`;
+        pressureVal.innerHTML = `${pressure}`;
         visibilityVal.innerHTML = `${visibility / 1000}km`;
         windspeedVal.innerHTML = `${speed}m/s`;
         feelVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
@@ -173,14 +173,14 @@ function getweatherDetails(name, lat, lon, country, state) {
                         `;
         }
     }).catch(() => {
-        alert(`failed to fectch weather details`);
+        alert(`failed to fectch weather details......`);
     });
 }
 function getCityCoordinates() {
     let cityName = cityInput.value.trim();
     cityInput.value = '';
     if (!cityName) return;
-    let GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},&limit=1&appid=${api_key}`;
+    let GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName},&limit=1&appid=${api_key}`;
     fetch(GEOCODING_API_URL).then(res => res.json()).then(data => {
         let { name, lat, lon, country, state } = data[0];
         getweatherDetails(name, lat, lon, country, state);
