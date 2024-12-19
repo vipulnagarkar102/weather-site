@@ -1,5 +1,6 @@
 let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
+    locationBtn = document.getElementById('locationBtn'),
     api_key = '250d8198dcaf602952d44571e3b4b88b';
 currentWeatherCard = document.querySelectorAll('.weather-left .card')[0];
 fiveDaysForecastCard = document.querySelector('.day-forecast');
@@ -152,7 +153,7 @@ function getweatherDetails(name, lat, lon, country, state) {
     });
 
     fetch(FORECAST_API_URL).then(res => res.json()).then(data => {
-        let hourlyForecast= data.list;
+        let hourlyForecast = data.list;
         hourlyForecastCard.innerHTML = ``;
         for (i = 0; i <= 7; i++) {
             let hrForecastDate = new Date(hourlyForecast[i].dt_txt);
@@ -207,4 +208,20 @@ function getCityCoordinates() {
     });
 }
 
+
+function getUserCoordinates() {
+    navigator.geolocation.getCurrentPosition(position => {
+        let { latitude, longitude } = position.coords;
+        let REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
+        fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
+            let { name, country, state } = data[0];
+            getweatherDetails(name, latitude, longitude, country, state);
+        }).catch(() => {
+            alert(`failed to fetch user location`);
+        });
+
+    });
+}
+
 searchBtn.addEventListener('click', getCityCoordinates);
+locationBtn.addEventListener('click', getUserCoordinates);
