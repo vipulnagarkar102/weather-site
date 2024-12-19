@@ -5,12 +5,12 @@ currentWeatherCard = document.querySelectorAll('.weather-left .card')[0];
 fiveDaysForecastCard = document.querySelector('.day-forecast');
 aqiCard = document.querySelectorAll('.highlights .card')[0];
 sunriseCard = document.querySelectorAll('.highlights .card')[1];
-humidityVal=document.getElementById('humidityVal'),
-pressureVal=document.getElementById('pressureVal'),
-visibilityVal=document.getElementById('visibilityVal'),
-windspeedVal=document.getElementById('windspeedVal'),
-feelVal=document.getElementById('feelVal'),
-aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very poor'];
+humidityVal = document.getElementById('humidityVal'),
+    pressureVal = document.getElementById('pressureVal'),
+    visibilityVal = document.getElementById('visibilityVal'),
+    windspeedVal = document.getElementById('windspeedVal'),
+    feelVal = document.getElementById('feelVal'),
+    aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very poor'];
 
 
 
@@ -111,9 +111,9 @@ function getweatherDetails(name, lat, lon, country, state) {
                 </div>
                 `;
         let { sunrise, sunset } = data.says,
-            { timezone,visibility } = data,
-            {humidity,pressure,feels_like}=data.main,
-            {speed}=data.wind,
+            { timezone, visibility } = data,
+            { humidity, pressure, feels_like } = data.main,
+            { speed } = data.wind,
             sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A'),
             sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
         sunriseCard.innerHTML = `
@@ -141,8 +141,13 @@ function getweatherDetails(name, lat, lon, country, state) {
                             </div>
                         </div>
             `;
+        humidityVal.innerHTML = `${humidity}%`;
+        pressureVal.innerHTML = `${pressurehpa}`;
+        visibilityVal.innerHTML = `${visibility / 1000}km`;
+        windspeedVal.innerHTML = `${speed}m/s`;
+        feelVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
     }).catch(() => {
-        alert(`failed to fectch weather deyails`);
+        alert(`failed to fectch weather details`);
     });
 
     fetch(FORECAST_API_URL).then(res => res.json()).then(data => {
